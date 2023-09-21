@@ -36,6 +36,22 @@ namespace DataTTTN.ContextdataBase
         public DbSet<Material> Materials { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Cart_details> Cart_Details { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Account> Accounts { get; set; }
+        public DbSet<Notification> Notifications { get; set; }  
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetails>  OrderDetails { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Account_voucher>  Account_Vouchers{ get; set; }
+        public DbSet<OrderHistory>  OrderHistories{ get; set; }
+        public DbSet<PaymentMethod>  PaymentMethods{ get; set; }
+        public DbSet<Voucher>   Vouchers{ get; set; }
+        public DbSet<VoucherDetails> VoucherDetails { get; set; }
+
+
+
+
+
 
     }
 }

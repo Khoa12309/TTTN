@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace DataTTTN.Models
 {
-    public class Account
+    public class Account_voucher
     {
         [Key]
         public Guid Id { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
         public int Status { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime Last_modified_date { get; set; }
-
-        [ForeignKey("User")]
-        public Guid Id_User { get; set; }
-        public virtual User? User { get; set; }
+        [ForeignKey("Account")]
+        public Guid Id_Account { get; set; }
+        [ForeignKey("Voucher")]
+        public Guid Id_Voucher { get; set; }
+        public virtual Voucher? Voucher { get; set; }
+        public virtual Account? Account { get; set; }
     }
 }
