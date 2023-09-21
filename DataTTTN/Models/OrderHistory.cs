@@ -8,18 +8,15 @@ using System.Threading.Tasks;
 
 namespace DataTTTN.Models
 {
-    public class Account
+    public class OrderHistory
     {
         [Key]
         public Guid Id { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public int Status { get; set; }
+        [ForeignKey("Order")]
+        public Guid Id_order { get; set; }
+        public string ActionDescription { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime Last_modified_date { get; set; }
-
-        [ForeignKey("User")]
-        public Guid Id_User { get; set; }
-        public virtual User? User { get; set; }
+        public virtual Order? Order { get; set; }
     }
 }

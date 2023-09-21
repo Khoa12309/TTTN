@@ -4,6 +4,7 @@ using DataTTTN.ContextdataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataTTTN.Migrations
 {
     [DbContext(typeof(TTTNContext))]
-    partial class TTTNContextModelSnapshot : ModelSnapshot
+    [Migration("20230921040122_lan6")]
+    partial class lan6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,68 +56,6 @@ namespace DataTTTN.Migrations
                         .IsUnique();
 
                     b.ToTable("Accounts");
-                });
-
-            modelBuilder.Entity("DataTTTN.Models.Account_voucher", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("Id_Account")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("Id_Voucher")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Last_modified_date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id_Account");
-
-                    b.HasIndex("Id_Voucher");
-
-                    b.ToTable("Account_Vouchers");
-                });
-
-            modelBuilder.Entity("DataTTTN.Models.Address", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Detailed_address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("District")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("Id_User")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Wards")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id_User");
-
-                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("DataTTTN.Models.Brand", b =>
@@ -337,147 +277,6 @@ namespace DataTTTN.Migrations
                     b.ToTable("Notifications");
                 });
 
-            modelBuilder.Entity("DataTTTN.Models.Order", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("Id_Account")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Last_modified_date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Note")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<float>("TotalMoney")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Transportfee")
-                        .HasColumnType("real");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id_Account");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("DataTTTN.Models.OrderDetails", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("Id_order")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("Id_productDetails")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<float>("Price")
-                        .HasColumnType("real");
-
-                    b.Property<Guid?>("Product_DetailsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id_order");
-
-                    b.HasIndex("Product_DetailsId");
-
-                    b.ToTable("OrderDetails");
-                });
-
-            modelBuilder.Entity("DataTTTN.Models.OrderHistory", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ActionDescription")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("Id_order")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Last_modified_date")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id_order");
-
-                    b.ToTable("OrderHistories");
-                });
-
-            modelBuilder.Entity("DataTTTN.Models.PaymentMethod", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("Id_order")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Last_modified_date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Method")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<float>("TotalMoney")
-                        .HasColumnType("real");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id_order");
-
-                    b.ToTable("PaymentMethods");
-                });
-
             modelBuilder.Entity("DataTTTN.Models.Product", b =>
                 {
                     b.Property<Guid>("Id")
@@ -658,111 +457,11 @@ namespace DataTTTN.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("DataTTTN.Models.Voucher", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("Last_modified_date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Value")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Vouchers");
-                });
-
-            modelBuilder.Entity("DataTTTN.Models.VoucherDetails", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<float>("AfterPrice")
-                        .HasColumnType("real");
-
-                    b.Property<float>("BeforPrice")
-                        .HasColumnType("real");
-
-                    b.Property<float>("DiscountPrice")
-                        .HasColumnType("real");
-
-                    b.Property<Guid>("Id_Voucher")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("Id_order")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id_Voucher");
-
-                    b.HasIndex("Id_order");
-
-                    b.ToTable("VoucherDetails");
-                });
-
             modelBuilder.Entity("DataTTTN.Models.Account", b =>
                 {
                     b.HasOne("DataTTTN.Models.User", "User")
                         .WithOne("Account")
                         .HasForeignKey("DataTTTN.Models.Account", "Id_User")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("DataTTTN.Models.Account_voucher", b =>
-                {
-                    b.HasOne("DataTTTN.Models.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("Id_Account")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DataTTTN.Models.Voucher", "Voucher")
-                        .WithMany()
-                        .HasForeignKey("Id_Voucher")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Account");
-
-                    b.Navigation("Voucher");
-                });
-
-            modelBuilder.Entity("DataTTTN.Models.Address", b =>
-                {
-                    b.HasOne("DataTTTN.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("Id_User")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -815,56 +514,6 @@ namespace DataTTTN.Migrations
                         .IsRequired();
 
                     b.Navigation("Account");
-                });
-
-            modelBuilder.Entity("DataTTTN.Models.Order", b =>
-                {
-                    b.HasOne("DataTTTN.Models.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("Id_Account")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Account");
-                });
-
-            modelBuilder.Entity("DataTTTN.Models.OrderDetails", b =>
-                {
-                    b.HasOne("DataTTTN.Models.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("Id_order")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DataTTTN.Models.Product_details", "Product_Details")
-                        .WithMany()
-                        .HasForeignKey("Product_DetailsId");
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product_Details");
-                });
-
-            modelBuilder.Entity("DataTTTN.Models.OrderHistory", b =>
-                {
-                    b.HasOne("DataTTTN.Models.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("Id_order")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-                });
-
-            modelBuilder.Entity("DataTTTN.Models.PaymentMethod", b =>
-                {
-                    b.HasOne("DataTTTN.Models.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("Id_order")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("DataTTTN.Models.Product_details", b =>
@@ -924,25 +573,6 @@ namespace DataTTTN.Migrations
                     b.Navigation("Size");
 
                     b.Navigation("Sole");
-                });
-
-            modelBuilder.Entity("DataTTTN.Models.VoucherDetails", b =>
-                {
-                    b.HasOne("DataTTTN.Models.Voucher", "Voucher")
-                        .WithMany()
-                        .HasForeignKey("Id_Voucher")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DataTTTN.Models.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("Id_order")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Voucher");
                 });
 
             modelBuilder.Entity("DataTTTN.Models.User", b =>
