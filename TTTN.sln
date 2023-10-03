@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTTTN", "DataTTTN\DataTTTN.csproj", "{E568A8EA-5DEB-4E68-831E-A830D8808BCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataTTTN", "DataTTTN\DataTTTN.csproj", "{E568A8EA-5DEB-4E68-831E-A830D8808BCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_TTTN", "API_TTTN\API_TTTN.csproj", "{DECD5DE7-DDB5-4BD8-A0A7-0F9D09715DB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API_TTTN", "API_TTTN\API_TTTN.csproj", "{DECD5DE7-DDB5-4BD8-A0A7-0F9D09715DB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WEB_TTTN", "WEB_TTTN\WEB_TTTN.csproj", "{DCB18671-9B24-4A45-A7B7-CA05004C7D09}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{DECD5DE7-DDB5-4BD8-A0A7-0F9D09715DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DECD5DE7-DDB5-4BD8-A0A7-0F9D09715DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DECD5DE7-DDB5-4BD8-A0A7-0F9D09715DB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCB18671-9B24-4A45-A7B7-CA05004C7D09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCB18671-9B24-4A45-A7B7-CA05004C7D09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCB18671-9B24-4A45-A7B7-CA05004C7D09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCB18671-9B24-4A45-A7B7-CA05004C7D09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
