@@ -9,5 +9,6 @@ namespace WEB_TTTN.Areas.Admin.Controllers
         {
             return View();
         }
+       
     }
 }
