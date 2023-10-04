@@ -478,6 +478,31 @@ namespace DataTTTN.Migrations
                     b.ToTable("PaymentMethods");
                 });
 
+            modelBuilder.Entity("DataTTTN.Models.Phanvung", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("Id_Role")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("Id_User")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Note")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Id_Role");
+
+                    b.HasIndex("Id_User");
+
+                    b.ToTable("Phanvungs");
+                });
+
             modelBuilder.Entity("DataTTTN.Models.Product", b =>
                 {
                     b.Property<Guid>("Id")
@@ -569,6 +594,25 @@ namespace DataTTTN.Migrations
                     b.HasIndex("Id_Sole");
 
                     b.ToTable("Products_details");
+                });
+
+            modelBuilder.Entity("DataTTTN.Models.Role", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("DataTTTN.Models.Size", b =>
@@ -865,6 +909,25 @@ namespace DataTTTN.Migrations
                         .IsRequired();
 
                     b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("DataTTTN.Models.Phanvung", b =>
+                {
+                    b.HasOne("DataTTTN.Models.Role", "Role")
+                        .WithMany()
+                        .HasForeignKey("Id_Role")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataTTTN.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("Id_User")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DataTTTN.Models.Product_details", b =>

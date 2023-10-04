@@ -46,7 +46,9 @@ namespace DataTTTN.ContextdataBase
         public DbSet<OrderHistory>  OrderHistories{ get; set; }
         public DbSet<PaymentMethod>  PaymentMethods{ get; set; }
         public DbSet<Voucher>   Vouchers{ get; set; }
-        public DbSet<VoucherDetails> VoucherDetails { get; set; }
+        public DbSet<VoucherDetails> VoucherDetails { get; set; } 
+        public DbSet<Role> Roles { get; set; } 
+        public DbSet<Phanvung> Phanvungs { get; set; }
 
 
 
