@@ -1,9 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataTTTN.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WEB_TTTN.Controllers
 {
+    
     public class AboutController : Controller
     {
+        [Authorize(Roles = "nv")]
         public IActionResult AboutView()
         {
             return View();

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WEB_TTTN.Service;
 
 namespace WEB_TTTN.Controllers
 {
@@ -6,6 +7,7 @@ namespace WEB_TTTN.Controllers
     {
         public IActionResult ShopView()
         {
+            
             return View();
         }
     }

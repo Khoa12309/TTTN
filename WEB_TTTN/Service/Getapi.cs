@@ -11,7 +11,7 @@ namespace WEB_TTTN.Service
             var respones = httpClient.GetAsync(url + data).Result;
             var dataapi = respones.Content.ReadAsStringAsync().Result;
             var dataobj = JsonConvert.DeserializeObject<List<T>>(dataapi);
-            return dataobj;
+            return dataobj;           
         }
     }
 }
