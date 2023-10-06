@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using DataTTTN.Models;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace WEB_TTTN.Service
 {
@@ -12,6 +15,48 @@ namespace WEB_TTTN.Service
             var dataapi = respones.Content.ReadAsStringAsync().Result;
             var dataobj = JsonConvert.DeserializeObject<List<T>>(dataapi);
             return dataobj;           
+        }
+        public async Task<T> CreateObj(T obj,string name)
+        {
+            
+            string data = JsonConvert.SerializeObject(obj);
+            StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
+
+            string requestURL =
+            $"https://localhost:7150/api/";
+            var httpClient = new HttpClient(); 
+            var response = await httpClient.PostAsync(requestURL +name+"/Post", content); // Lấy kết quả// ]Đọc ra string Json
+            if (response.IsSuccessStatusCode == false)
+            {
+                return obj;
+            }
+            return obj;
+        }
+        public async Task<T> UpdateRole(T obj,string name)
+        {
+            string data = JsonConvert.SerializeObject(obj);
+            StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
+
+            string requestURL =
+            $"https://localhost:7150/api/";
+            var httpClient = new HttpClient(); // Tại 1 httpClient để call API
+            var response = await httpClient.PutAsync(requestURL +name+ "/Update", content);
+
+            string apiData = await response.Content.ReadAsStringAsync();
+            return obj;
+        }
+
+        public async Task<bool> DeleteRole(Guid id,string name)
+        {
+
+            string requestURL =
+            $"https://localhost:7150/api/";
+            var httpClient = new HttpClient(); // Tại 1 httpClient để call API
+            var response = await httpClient.DeleteAsync(requestURL + name+ "/Delete?id=" + id.ToString());
+
+            string apiData = await response.Content.ReadAsStringAsync();
+            return true;
+            
         }
     }
 }
