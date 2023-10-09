@@ -42,7 +42,7 @@ namespace API_TTTN.Controllers
             item.Create_at=obj.Create_at;
            
 
-            return _crud.UpdateItem(obj);
+            return _crud.UpdateItem(item);
         }
     }
 }

@@ -45,7 +45,7 @@ namespace API_TTTN.Controllers
             item.CreateDate = obj.CreateDate;
             item.Status = obj.Status;
             
-            return _crud.UpdateItem(obj);
+            return _crud.UpdateItem(item);
         }
     }
 }

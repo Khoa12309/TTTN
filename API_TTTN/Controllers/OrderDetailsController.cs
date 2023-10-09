@@ -44,7 +44,7 @@ namespace API_TTTN.Controllers
            item.Price=obj.Price;
             item.Id_productDetails=obj.Id_productDetails;
 
-            return _crud.UpdateItem(obj);
+            return _crud.UpdateItem(item);
         }
     }
 }

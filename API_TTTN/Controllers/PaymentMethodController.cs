@@ -44,7 +44,7 @@ namespace API_TTTN.Controllers
             item.Description = obj.Description;
             item.TotalMoney = obj.TotalMoney;
             item.CreateDate = obj.CreateDate;           
-            return _crud.UpdateItem(obj);
+            return _crud.UpdateItem(item);
         }
     }
 }

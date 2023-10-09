@@ -44,7 +44,7 @@ namespace API_TTTN.Controllers
             item.Id_User=obj.Id_User;
             item.Id_Role=obj.Id_Role;
 
-            return _crud.UpdateItem(obj);
+            return _crud.UpdateItem(item);
         }
     }
 }

@@ -44,7 +44,7 @@ namespace API_TTTN.Controllers
             item.Last_modified_date=obj.Last_modified_date;
             
 
-            return _crud.UpdateItem(obj);
+            return _crud.UpdateItem(item);
         }
     }
 }

@@ -48,7 +48,7 @@ namespace API_TTTN.Controllers
             item.StartDate= obj.StartDate;
             item.EndDate= obj.EndDate;
             item.Value = obj.Value;
-            return _crud.UpdateItem(obj);
+            return _crud.UpdateItem(item);
         }
     }
 }
