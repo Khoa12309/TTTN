@@ -46,7 +46,7 @@ namespace API_TTTN.Controllers
             item.Fullname = obj.Fullname;
             item.Status = obj.Status;
             item.Email = obj.Email;                     
-            return _crud.UpdateItem(obj);
+            return _crud.UpdateItem(item);
         }
     }
 }

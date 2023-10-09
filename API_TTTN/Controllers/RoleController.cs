@@ -40,9 +40,8 @@ namespace API_TTTN.Controllers
         {
             Role item = _crud.GetAllItems().FirstOrDefault(c => c.Id == obj.Id);
             item.Name=obj.Name;
-            item.Code=obj.Code;
-            
-            return _crud.UpdateItem(obj);
+            item.Code=obj.Code;            
+            return _crud.UpdateItem(item);
         }
     }
 }

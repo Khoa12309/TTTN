@@ -21,22 +21,21 @@ namespace WEB_TTTN.Service
             
             string data = JsonConvert.SerializeObject(obj);
             StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
-
             string requestURL =
             $"https://localhost:7150/api/";
             var httpClient = new HttpClient(); 
-            var response = await httpClient.PostAsync(requestURL +name+"/Post", content); // Lấy kết quả// ]Đọc ra string Json
+            var response = await httpClient.PostAsync(requestURL +name+"/Post", content);
+            string apiData = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode == false)
             {
                 return obj;
             }
             return obj;
         }
-        public async Task<T> UpdateRole(T obj,string name)
+        public async Task<T> UpdateObj(T obj,string name)
         {
             string data = JsonConvert.SerializeObject(obj);
             StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
-
             string requestURL =
             $"https://localhost:7150/api/";
             var httpClient = new HttpClient(); // Tại 1 httpClient để call API
@@ -46,7 +45,7 @@ namespace WEB_TTTN.Service
             return obj;
         }
 
-        public async Task<bool> DeleteRole(Guid id,string name)
+        public async Task<bool> DeleteObj(Guid id,string name)
         {
 
             string requestURL =

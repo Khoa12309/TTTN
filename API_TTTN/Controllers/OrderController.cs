@@ -48,7 +48,7 @@ namespace API_TTTN.Controllers
             item.Note = obj.Note;
             item.PhoneNumber = obj.PhoneNumber;
             item.Transportfee = obj.Transportfee;
-            return _crud.UpdateItem(obj);
+            return _crud.UpdateItem(item);
         }
     }
 }

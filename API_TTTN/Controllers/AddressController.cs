@@ -46,7 +46,7 @@ namespace API_TTTN.Controllers
             item.Detailed_address=obj.Detailed_address;
           
 
-            return _crud.UpdateItem(obj);
+            return _crud.UpdateItem(item);
         }
     }
 }

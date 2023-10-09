@@ -54,7 +54,7 @@ namespace API_TTTN.Controllers
             item.Id_Category = obj.Id_Category;
             
 
-            return _crud.UpdateItem(obj);
+            return _crud.UpdateItem(item);
         }
     }
 }

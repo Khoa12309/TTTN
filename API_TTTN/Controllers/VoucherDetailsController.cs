@@ -44,8 +44,7 @@ namespace API_TTTN.Controllers
             item.DiscountPrice=obj.DiscountPrice;
             item.Id_Voucher=obj.Id_Voucher;
             item.Id_order=obj.Id_order;
-            item.Id_Voucher = obj.Id_Voucher;
-            
+            item.Id_Voucher = obj.Id_Voucher;            
             return _crud.UpdateItem(obj);
         }
     }
