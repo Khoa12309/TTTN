@@ -43,7 +43,7 @@ namespace WEB_TTTN.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(string email_username, string password)
         {
-            var Acc = getapiAcc.GetApi("Account").FirstOrDefault(c => c.Email == email_username && c.Password == password);
+            var Acc =  getapiAcc.GetApi("Account").FirstOrDefault(c => c.Email == email_username && c.Password == password);
             var _user = getapiUser.GetApi("User").FirstOrDefault(c => c.Id == Acc.Id_User);
             var _pv = getapiPV.GetApi("Phanvung").FirstOrDefault(c => c.Id_User == _user.Id);
             string _role="";
