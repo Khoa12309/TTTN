@@ -54,7 +54,7 @@ namespace WEB_TTTN.Controllers
         public async Task<IActionResult> Edit(Guid id)
         {
 
-            var lst = getapi.GetApi("Size");
+            var lst =  getapi.GetApi("Size");
             return View(lst.Find(c => c.Id == id));
         }
 
