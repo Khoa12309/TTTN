@@ -61,12 +61,11 @@
                                 foreach (var item in ViewBag.Role)
                                 {
 
-                                                                    <option value="@item.Id"> @item.Name</option>
+                                <option value="@item.Id"> @item.Name</option>
                                       
                                 }
                             }
-                        }
-                        
+                        }                        
                     </select>
 
                 <ul id="myList1">
@@ -112,7 +111,7 @@
     function addToList() {
         let input = document.getElementById("role").value;       
         myList.push(input);      
-        document.getElementById("myList1").innerHTML = "<li>" + myList.join("</li><li>") + "</li>";
+        document.getElementById("myList1").innerHTML = "<li>" + myList.join("</li><li>") +  "</li > ";
         return  myList;
     }
     function passdata(){

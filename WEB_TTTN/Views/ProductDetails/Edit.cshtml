@@ -1,0 +1,178 @@
+﻿@model DataTTTN.Models.Product_details
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Product_details</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+         
+
+            <div class="form-group">
+                <label class="control-label">Size</label>
+                <select asp-for="Id_Size" class="form-control">
+                    @{
+                        if (ViewBag.Size != null)
+                        {
+                            foreach (var item in ViewBag.Size)
+                            {
+
+                                <option value="@item.Id"> @item.Name</option>
+
+                            }
+                        }
+                    }
+                </select>
+                <span asp-validation-for="Id_Size" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Category</label>
+                <select asp-for="Id_Category" class="form-control">
+                    @{
+                        if (ViewBag.Category != null)
+                        {
+                            foreach (var item in ViewBag.Category)
+                            {
+
+                                <option value="@item.Id"> @item.Name</option>
+
+                            }
+                        }
+                    }
+                </select>
+                <span asp-validation-for="Id_Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Color</label>
+                <select asp-for="Id_Color" class="form-control">
+                    @{
+                        if (ViewBag.Color != null)
+                        {
+                            foreach (var item in ViewBag.Color)
+                            {
+
+                                <option value="@item.Id"> @item.Name</option>
+
+                            }
+                        }
+                    }
+                </select>
+                <span asp-validation-for="Id_Color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Brand</label>
+                <select asp-for="Id_Brand" class="form-control">
+                    @{
+                        if (ViewBag.Brand != null)
+                        {
+                            foreach (var item in ViewBag.Brand)
+                            {
+
+                                <option value="@item.Id"> @item.Name</option>
+
+                            }
+                        }
+                    }
+                </select>
+                <span asp-validation-for="Id_Brand" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Material</label>
+                <select asp-for="Id_Material" class="form-control">
+                    @{
+                        if (ViewBag.Material != null)
+                        {
+                            foreach (var item in ViewBag.Material)
+                            {
+
+                                <option value="@item.Id"> @item.Name</option>
+
+                            }
+                        }
+                    }
+                </select>
+                <span asp-validation-for="Id_Material" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Sole</label>
+                <select asp-for="Id_Sole" class="form-control">
+                    @{
+                        if (ViewBag.Sole != null)
+                        {
+                            foreach (var item in ViewBag.Sole)
+                            {
+
+                                <option value="@item.Id"> @item.Name</option>
+
+                            }
+                        }
+                    }
+                </select>
+                <span asp-validation-for="Id_Sole" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Product</label>
+                <select asp-for="Id_Product" class="form-control">
+                    @{
+                        if (ViewBag.Product != null)
+                        {
+                            foreach (var item in ViewBag.Product)
+                            {
+
+                                <option value="@item.Id"> @item.Name</option>
+
+                            }
+                        }
+                    }
+                </select>
+                <span asp-validation-for="Id_Product" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"></label>
+                <input asp-for="Gender" class="form-control" />
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreateDate" class="control-label"></label>
+                <input asp-for="CreateDate" class="form-control" />
+                <span asp-validation-for="CreateDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Last_modified_date" class="control-label"></label>
+                <input asp-for="Last_modified_date" class="form-control" />
+                <span asp-validation-for="Last_modified_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

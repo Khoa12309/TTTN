@@ -4,21 +4,17 @@ using WEB_TTTN.Service;
 
 namespace WEB_TTTN.Controllers
 {
-    public class ProductController : Controller
+    public class MaterialController : Controller
     {
-        public IActionResult ProductView()
+        private Getapi<Material> getapi;
+        public MaterialController()
         {
-            return View();
-        }
-        private Getapi<Product> getapi;
-        public ProductController()
-        {
-            getapi = new Getapi<Product>();
+            getapi = new Getapi<Material>();
         }
 
         public async Task<IActionResult> GetList()
         {
-            var obj = getapi.GetApi("Product");
+            var obj = getapi.GetApi("Material");
             return View(obj);
         }
 
@@ -37,11 +33,11 @@ namespace WEB_TTTN.Controllers
 
         // POST: SupplierController1/Create
         [HttpPost]
-        public async Task<IActionResult> Create(Product obj)
+        public async Task<IActionResult> Create(Material obj)
         {
             try
             {
-                getapi.CreateObj(obj, "Product");
+                getapi.CreateObj(obj, "Material");
                 return RedirectToAction("GetList");
             }
             catch
@@ -55,17 +51,17 @@ namespace WEB_TTTN.Controllers
         public async Task<IActionResult> Edit(Guid id)
         {
 
-            var lst = getapi.GetApi("Product");
+            var lst = getapi.GetApi("Material");
             return View(lst.Find(c => c.Id == id));
         }
 
         //// POST: SupplierController1/Edit/5
         [HttpPost]
-        public async Task<IActionResult> Edit(Product obj)
+        public async Task<IActionResult> Edit(Material obj)
         {
             try
             {
-                getapi.UpdateObj(obj, "Product");
+                getapi.UpdateObj(obj, "Material");
                 return RedirectToAction("GetList");
             }
             catch
@@ -77,7 +73,7 @@ namespace WEB_TTTN.Controllers
         //// GET: SupplierController1/Delete/5
         public async Task<IActionResult> Delete(Guid id)
         {
-            getapi.DeleteObj(id, "Product");
+            getapi.DeleteObj(id, "Material");
             return RedirectToAction("GetList");
 
         }

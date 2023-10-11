@@ -1,0 +1,114 @@
+﻿@model IEnumerable<DataTTTN.Models.Product_details>
+
+@{
+    ViewData["Title"] = "GetList";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>GetList</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Size)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Material)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Sole)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Product)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Last_modified_date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Material)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Sole)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Product)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Last_modified_date)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  id=item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
