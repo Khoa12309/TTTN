@@ -14,6 +14,7 @@ namespace WEB_TTTN.Controllers
         private Getapi<Sole> getapiSole;
         private Getapi<Brand> getapiBrand;
         private Getapi<Product> getapiProduct;
+        private Getapi<Image> getapiImg;
 
         public ProductDetailsController()
         {
@@ -25,6 +26,7 @@ namespace WEB_TTTN.Controllers
             getapiSole = new Getapi<Sole>();
             getapiBrand = new Getapi<Brand>();
             getapiProduct = new Getapi<Product>();
+            getapiImg= new Getapi<Image>();
         }
 
         public async Task<IActionResult> GetList()
@@ -100,5 +102,21 @@ namespace WEB_TTTN.Controllers
             return RedirectToAction("GetList");
 
         }
+
+        public IActionResult ProductView()
+        {
+            var lst = getapi.GetApi("Product_details").Where(c => c.Status == 1);
+            ViewBag.Size = getapiSize.GetApi("Size");
+            ViewBag.Color = getapiColor.GetApi("Color");
+            ViewBag.Sole = getapiSole.GetApi("Sole");
+            ViewBag.Category = getapiCategory.GetApi("Category");
+            ViewBag.Material = getapiMaterial.GetApi("Material");
+            ViewBag.Brand = getapiBrand.GetApi("Brand");
+            ViewBag.Product = getapiProduct.GetApi("Product");
+            ViewBag.Img = getapiImg.GetApi("Image");
+            
+            return View(lst);
+        }
+
     }
 }

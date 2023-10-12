@@ -6,10 +6,7 @@ namespace WEB_TTTN.Controllers
 {
     public class ProductController : Controller
     {
-        public IActionResult ProductView()
-        {
-            return View();
-        }
+       
         private Getapi<Product> getapi;
         public ProductController()
         {
