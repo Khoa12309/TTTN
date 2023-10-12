@@ -18,6 +18,10 @@ namespace WEB_TTTN.Controllers
         private Getapi<Account> getapiAcc;
         private Getapi<Role> getapiRole;
         private Getapi<Phanvung> getapiPV;
+  
+        
+
+
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -122,6 +126,7 @@ namespace WEB_TTTN.Controllers
             return RedirectToAction("Login");
         }
 
+       
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
