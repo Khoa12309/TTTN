@@ -117,6 +117,21 @@ namespace WEB_TTTN.Controllers
             
             return View(lst);
         }
+        public IActionResult Details(Guid id)
+        {
+            var lst = getapi.GetApi("Product_details").Find(c => c.Id == id);
+
+            ViewBag.Size = getapiSize.GetApi("Size").Find(c=>c.Id==lst.Id_Size);
+            ViewBag.Color = getapiColor.GetApi("Color").Find(c => c.Id == lst.Id_Color);
+            ViewBag.Sole = getapiSole.GetApi("Sole").Find(c => c.Id == lst.Id_Sole);
+            ViewBag.Category = getapiCategory.GetApi("Category").Find(c => c.Id == lst.Id_Category);
+            ViewBag.Material = getapiMaterial.GetApi("Material").Find(c => c.Id == lst.Id_Material);
+            ViewBag.Brand = getapiBrand.GetApi("Brand").Find(c => c.Id == lst.Id_Brand);
+            ViewBag.Product = getapiProduct.GetApi("Product").Find(c => c.Id == lst.Id_Product);
+        
+            return View(lst);
+         
+        }
 
     }
 }

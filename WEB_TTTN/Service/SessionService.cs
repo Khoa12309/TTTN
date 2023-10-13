@@ -34,5 +34,9 @@ namespace WEB_TTTN.Service
             }
             else return new User();
         }
+        public static bool CheckProductInCart(Guid id, List<Product> cartProducts)
+        {
+            return cartProducts.Any(p => p.Id == id);
+        }
     }
 }
