@@ -79,5 +79,16 @@ namespace WEB_TTTN.Controllers
             }
             return RedirectToAction("Cart");
         }
+   
+        public void listcheckout(IEnumerable<DataTTTN.Models.Product_details> item)
+        {
+
+        }
+        [HttpPost]
+      public IActionResult Cart(IEnumerable<DataTTTN.Models.Product_details> item)
+       {
+            return RedirectToAction("productdeatils/getlist");
+      }
+
     }
 }
