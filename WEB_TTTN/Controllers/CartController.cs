@@ -32,11 +32,12 @@ namespace WEB_TTTN.Controllers
         public IActionResult Index()
         {
             return View();
-        } 
+        }
         public IActionResult Cart()
         {
             var lst = getapi.GetApi("Product_details");
-            ViewBag.Product = SessionService.GetObjFromSession(HttpContext.Session, "Cart");            
+            ViewBag.Product = SessionService.GetObjFromSession(HttpContext.Session, "Cart");
+            var a = SessionService.GetObjFromSession(HttpContext.Session, "Cart");
             ViewBag.Size = getapiSize.GetApi("Size");
             ViewBag.Color = getapiColor.GetApi("Color");
             ViewBag.Sole = getapiSole.GetApi("Sole");
@@ -46,9 +47,19 @@ namespace WEB_TTTN.Controllers
             ViewBag.Img = getapiImg.GetApi("Image");
             return View(lst);
         }
+        [HttpPost]
+        public IActionResult Cart(List<DataTTTN.Models.Product_details> item)
+        {
+            var a = new List<DataTTTN.Models.Product_details>();
+            a = item.ToList();
+
+            return RedirectToAction("productdeatils/getlist");
+        }
+
+
         public async Task<IActionResult> AddToCart(Guid id, int SoLuong)
         {
-            var product = getapiProduct.GetApi("Product").Find(c=>c.Id==id) ;
+            var product = getapiProduct.GetApi("Product").Find(c => c.Id == id);
             product.Quantity = SoLuong;
             var products = SessionService.GetObjFromSession(HttpContext.Session, "Cart");
 
@@ -79,16 +90,10 @@ namespace WEB_TTTN.Controllers
             }
             return RedirectToAction("Cart");
         }
-   
+
         public void listcheckout(IEnumerable<DataTTTN.Models.Product_details> item)
         {
 
         }
-        [HttpPost]
-      public IActionResult Cart(IEnumerable<DataTTTN.Models.Product_details> item)
-       {
-            return RedirectToAction("productdeatils/getlist");
-      }
-
     }
 }
