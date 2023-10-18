@@ -13,16 +13,16 @@ namespace WEB_TTTN.Service
             session.SetString(key, jsonString);
 
         }
-        public static List<Product> GetObjFromSession(ISession session, string key)
+        public static List<Product_details> GetObjFromSession(ISession session, string key)
         {
 
             var data = session.GetString(key);
             if (data != null)
             {
-                var listObj = JsonConvert.DeserializeObject<List<Product>>(data);
+                var listObj = JsonConvert.DeserializeObject<List<Product_details>>(data);
                 return listObj;
             }
-            else return new List<Product>();
+            else return new List<Product_details>();
         }
         public static User GetUserFromSession(ISession session, string key)
         {
@@ -34,9 +34,10 @@ namespace WEB_TTTN.Service
             }
             else return new User();
         }
-        public static bool CheckProductInCart(Guid id, List<Product> cartProducts)
+        public static bool CheckProductInCart(Guid id, List<Product_details> cartProducts)
         {
             return cartProducts.Any(p => p.Id == id);
         }
+      
     }
 }

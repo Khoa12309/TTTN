@@ -35,9 +35,8 @@ namespace WEB_TTTN.Controllers
         }
         public IActionResult Cart()
         {
-            var lst = getapi.GetApi("Product_details");
-            ViewBag.Product = SessionService.GetObjFromSession(HttpContext.Session, "Cart");
-            var a = SessionService.GetObjFromSession(HttpContext.Session, "Cart");
+            var lst = SessionService.GetObjFromSession(HttpContext.Session, "Cart"); 
+            ViewBag.Product = getapiProduct.GetApi("Product");         
             ViewBag.Size = getapiSize.GetApi("Size");
             ViewBag.Color = getapiColor.GetApi("Color");
             ViewBag.Sole = getapiSole.GetApi("Sole");
@@ -57,10 +56,10 @@ namespace WEB_TTTN.Controllers
         }
 
 
-        public async Task<IActionResult> AddToCart(Guid id, int SoLuong)
+        public async Task<IActionResult> AddToCart(Guid id, int soluong)
         {
-            var product = getapiProduct.GetApi("Product").Find(c => c.Id == id);
-            product.Quantity = SoLuong;
+            var product = getapi.GetApi("Product_details").Find(c => c.Id == id);
+            product.Quantity = soluong;
             var products = SessionService.GetObjFromSession(HttpContext.Session, "Cart");
 
             if (products.Count == 0)
@@ -81,7 +80,7 @@ namespace WEB_TTTN.Controllers
                 else
                 {
                     var productcart = products.FirstOrDefault(c => c.Id == id);
-                    productcart.Quantity += SoLuong;
+                    productcart.Quantity += soluong;
                     products.Remove(productcart);
                     products.Add(productcart);
                     SessionService.SetObjToJson(HttpContext.Session, "Cart", products);
@@ -90,8 +89,16 @@ namespace WEB_TTTN.Controllers
             }
             return RedirectToAction("Cart");
         }
+        public IActionResult DeleteCartItem(Guid id)
+        {
+            var products = SessionService.GetObjFromSession(HttpContext.Session, "Cart");
+            var p = products.Find(c => c.Id == id);
+            products.Remove(p);
+            SessionService.SetObjToJson(HttpContext.Session, "Cart", products);
 
-        public void listcheckout(IEnumerable<DataTTTN.Models.Product_details> item)
+            return RedirectToAction("Cart");
+        }
+        public void listcheckout(IEnumerable<DataTTTN.Models.Product_details> item )
         {
 
         }
