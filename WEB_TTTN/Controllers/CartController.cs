@@ -16,6 +16,7 @@ namespace WEB_TTTN.Controllers
         private Getapi<Brand> getapiBrand;
         private Getapi<Product> getapiProduct;
         private Getapi<Image> getapiImg;
+        private Getapi<User> getapiUser;
         public CartController()
         {
             getapi = new Getapi<Product_details>();
@@ -27,6 +28,7 @@ namespace WEB_TTTN.Controllers
             getapiBrand = new Getapi<Brand>();
             getapiProduct = new Getapi<Product>();
             getapiImg = new Getapi<Image>();
+            getapiUser=new Getapi<User>();
         }
 
         public IActionResult Index()
@@ -49,10 +51,10 @@ namespace WEB_TTTN.Controllers
         [HttpPost]
         public IActionResult Cart(List<DataTTTN.Models.Product_details> item)
         {
-            var a = new List<DataTTTN.Models.Product_details>();
-            a = item.ToList();
 
-            return RedirectToAction("productdeatils/getlist");
+            SessionService.GetObjFromSession(HttpContext.Session, "Cart").Clear();          
+            SessionService.SetObjToJson(HttpContext.Session, "Cart", item);
+            return RedirectToAction( "checkout");
         }
 
 
@@ -98,8 +100,11 @@ namespace WEB_TTTN.Controllers
 
             return RedirectToAction("Cart");
         }
-        public void listcheckout(IEnumerable<DataTTTN.Models.Product_details> item )
+        public IActionResult checkout()
         {
+            var lst = SessionService.GetObjFromSession(HttpContext.Session, "Cart");
+            ViewBag.User = getapiUser.GetApi("User");
+            return View(lst);
 
         }
     }

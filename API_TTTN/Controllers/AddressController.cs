@@ -23,9 +23,9 @@ namespace API_TTTN.Controllers
         }
         [Route("Post")]
         [HttpPost]
-        public bool Create(Address obj)
+        public bool Create(Address add)
         {
-            return _crud.CreateItem(obj);
+            return _crud.CreateItem(add);
         }
         [Route("Delete")]
         [HttpDelete]
