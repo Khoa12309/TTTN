@@ -34,114 +34,115 @@
 										@for (int i = 0; i < Model.Count; i++)
 										{
 											List<Guid> a = new List<Guid>();
+											string b = i.ToString();
+											int n = -1;
 											@foreach (var pro in ViewBag.Product)
 											{
-
+												n--;
 												if (a.Exists(i => i == pro.Id))
 												{
 													continue;
 												}
 												if (Model[i].Id_Product == pro.Id)
 												{
-													
+
 													a.Add(pro.Id);
 													<div class="row">
-													@foreach (var img in ViewBag.Img)
-													{
-														if (Model[i].Id == img.Id_Product_details)
+														@foreach (var img in ViewBag.Img)
 														{
+															if (Model[i].Id == img.Id_Product_details)
+															{
 
-															<div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+																<div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
 
-																<!-- Image -->
+																	<!-- Image -->
 
-																<div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
-																	<img src="~/images/@img.Name" class="w-100" alt="Blue Jeans Jacket" />
-																	<a href="#!">
-																		<div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
-																	</a>
+																	<div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+																		<img src="~/images/@img.Name" class="w-100" alt="Blue Jeans Jacket" />
+																		<a href="#!">
+																			<div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+																		</a>
+																	</div>
+																	<!-- Image -->
+
 																</div>
-																<!-- Image -->
 
-															</div>
-														
+															}
 														}
-													}
 
-													<div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
-														<!-- Data -->
-														<p><strong>@pro.Name</strong></p>
-														<div class="row">
-															<p>Color</p>
-															<select asp-for="@Model[i].Id_Color" class="selectpicker" data-max-options="2">
-																@{
-																	if (ViewBag.Size != null)
-																	{
-																		foreach (var size in ViewBag.Size)
+														<div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+															<!-- Data -->
+															<p><strong>@pro.Name</strong></p>
+															<div class="row">
+																<p>Color</p>
+																<select asp-for="@Model[i].Id_Color" class="selectpicker" data-max-options="2">
+																	@{
+																		if (ViewBag.Size != null)
 																		{
-																			<option value="@size.Id" data-content="<span class='badge badge-success'>Relish</span>"> @size.Name</option>
+																			foreach (var size in ViewBag.Size)
+																			{
+																				<option value="@size.Id" data-content="<span class='badge badge-success'>Relish</span>"> @size.Name</option>
+																			}
 																		}
 																	}
-																}
-															</select>
-														</div>
-														<div class="row">
-															<p>Size</p>
-															<select asp-for="@Model[i].Id_Size" class="form-control">
-																@{
-																	if (ViewBag.Size != null)
-																	{
-																		foreach (var size in ViewBag.Size)
+																</select>
+															</div>
+															<div class="row">
+																<p>Size</p>
+																<select asp-for="@Model[i].Id_Size" class="form-control">
+																	@{
+																		if (ViewBag.Size != null)
 																		{
-																			<option value="@size.Id"> @size.Name</option>
+																			foreach (var size in ViewBag.Size)
+																			{
+																				<option value="@size.Id"> @size.Name</option>
+																			}
 																		}
 																	}
-																}
-															</select>
+																</select>
 
-														</div>
-
-														<a href="@Url.Action("DeleteCartItem","Cart",new {id=Model[i].Id})" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip" title="Remove item">
-															X
-														</a>
-
-														<!-- Data -->
-													</div>
-													<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-														<!-- Quantity -->
-														<div class="d-flex mb-4" style="max-width: 300px">
-
-
-															<div class="form-outline">
-																	<label class="form-label" for="form1">Quantity</label>
-																	<input id="quantity" min="0" name="quantity" oninput="tt(@Model[i].Price)" value="1" type="number" class="form-control" />
 															</div>
 
+															<a href="@Url.Action("DeleteCartItem","Cart",new {id=Model[i].Id})" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip" title="Remove item">
+																X
+															</a>
+
+															<!-- Data -->
+														</div>
+														<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+															<!-- Quantity -->
+															<div class="d-flex mb-4 form-outline" style="max-width: 300px">
+																<label class="form-label">Quantity</label>
+																<input id=@b min="0" asp-for="@Model[i].Quantity" oninput="tt(@Model[i].Price,@b,@n)" value="@Model[i].Quantity" type="number" class="form-control" />
+
+																
+
+
+															</div>
+															<!-- Quantity -->
+															<!-- Price -->
+															<div class="input-group mb-3">
+																<span class="input-group-text">Price</span>
+																<span class="input-group-text">$</span>
+																<input readonly type="number" id=@n value="@Model[i].Price* @Model[i].Quantity" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+															</div>
+															<!-- Price -->
+														</div>
+														<hr class="my-4" />
+														<div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+															<!-- Data -->
+											@Html.HiddenFor(m => m[i].Id)
+															<input hidden asp-for="@Model[i].Price" value="@Model[i].Price" />
+															<input hidden asp-for="@Model[i].Id_Category" value="@Model[i].Id_Category" />
+															<input hidden asp-for="@Model[i].Id_Material" value="@Model[i].Id_Material" />
+															
+															@Html.HiddenFor(m => m[i].Id_Product)
+															@Html.HiddenFor(m => m[i].Description)
+															@Html.HiddenFor(m => m[i].Id_Brand)
+															@Html.HiddenFor(m => m[i].Id_Sole)
+															@Html.HiddenFor(m => m[i].Description)
 
 														</div>
-														<!-- Quantity -->
-														<!-- Price -->
-														<div class="input-group mb-3">
-															<span class="input-group-text">Price</span>
-															<span class="input-group-text">$</span>
-																<input readonly type="number" id="thanhtien" value="@Model[i].Price" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
-														</div>
-														<!-- Price -->
-													</div>
-													<hr class="my-4" />
-													<div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
-														<!-- Data -->
-														@Html.HiddenFor(m => m[i].Id)
-														<input hidden asp-for="@Model[i].Price" value="@Model[i].Price" />
-														<input hidden asp-for="@Model[i].Id_Category" value="@Model[i].Id_Category" />
-														<input hidden asp-for="@Model[i].Id_Material" value="@Model[i].Id_Material" />
-														@Html.HiddenFor(m => m[i].Id_Product)
-														@Html.HiddenFor(m => m[i].Description)
-														@Html.HiddenFor(m => m[i].Id_Brand)
-														@Html.HiddenFor(m => m[i].Id_Sole)
-														@Html.HiddenFor(m => m[i].Description)
-
-													</div>
 													</div>
 
 												}
@@ -188,7 +189,7 @@
 								<ul class="list-group list-group-flush">
 									<li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
 										Products
-										<span>$53.98</span>
+										<input id="total" value="0" />
 									</li>
 									<li class="list-group-item d-flex justify-content-between align-items-center px-0">
 										Shipping
@@ -229,12 +230,19 @@
 		//document.getElementById("quantity").oninput = function () {
 		//	document.getElementById("thanhtien").value = document.getElementById("quantity").value * 5
 		//}
-		function tt(price) {
-			document.getElementById("thanhtien").value = document.getElementById("quantity").value * price
 
+
+	
+
+	
+		function tt(price, id, idp) {
+			var sp = document.getElementById(id).value * price;			
+			document.getElementById(idp).value = sp;
+			var total = document.getElementById("total").value;
+			myList.push(idp, sp);			
 		}
-		
-
+	
+	
 	</script>
 </body>
 </html>

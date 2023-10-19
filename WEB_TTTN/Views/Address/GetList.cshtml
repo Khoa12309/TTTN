@@ -1,0 +1,66 @@
+﻿@model IEnumerable<DataTTTN.Models.Address>
+
+@{
+    ViewData["Title"] = "GetList";
+       Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>GetList</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.District)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Wards)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Detailed_address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.District)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Wards)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Detailed_address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_User)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
