@@ -12,8 +12,8 @@ namespace DataTTTN.Models
     {
         [Key]
         public Guid Id { get; set; }
-        [ForeignKey("Account")]
-        public Guid Id_Account { get; set; }
+        [ForeignKey("User")]
+        public Guid Id_User { get; set; }
         public string Note { get; set; }
         public string PhoneNumber { get; set; }
         public string Name { get; set; }
@@ -24,6 +24,6 @@ namespace DataTTTN.Models
         public DateTime Last_modified_date { get; set; }
         public int Status { get; set; }
 
-        public virtual Account? Account { get; set; }
+        public virtual User? Account { get; set; }
     }
 }

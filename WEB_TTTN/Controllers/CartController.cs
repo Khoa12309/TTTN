@@ -17,6 +17,9 @@ namespace WEB_TTTN.Controllers
         private Getapi<Product> getapiProduct;
         private Getapi<Image> getapiImg;
         private Getapi<User> getapiUser;
+        private Getapi<Address> getapiAddress;
+        private Getapi<Order> getapiOrder;
+        private Getapi<OrderDetails> getapiOrderDetails;
         public CartController()
         {
             getapi = new Getapi<Product_details>();
@@ -29,6 +32,9 @@ namespace WEB_TTTN.Controllers
             getapiProduct = new Getapi<Product>();
             getapiImg = new Getapi<Image>();
             getapiUser=new Getapi<User>();
+            getapiAddress=new Getapi<Address>();
+            getapiOrder=new Getapi<Order>();
+            getapiOrderDetails=new Getapi<OrderDetails>();
         }
 
         public IActionResult Index()
@@ -97,15 +103,75 @@ namespace WEB_TTTN.Controllers
             var p = products.Find(c => c.Id == id);
             products.Remove(p);
             SessionService.SetObjToJson(HttpContext.Session, "Cart", products);
-
             return RedirectToAction("Cart");
         }
         public IActionResult checkout()
         {
             var lst = SessionService.GetObjFromSession(HttpContext.Session, "Cart");
-            ViewBag.User = getapiUser.GetApi("User");
-            return View(lst);
+            ViewBag.User = SessionService.GetUserFromSession(HttpContext.Session, "User");
+            ViewBag.pro = getapiProduct.GetApi("Product");
+            ViewBag.Address = getapiAddress.GetApi("Address").FirstOrDefault(c=>c.Id_User==ViewBag.User.Id);
 
+            return View(lst);
+        } 
+        public IActionResult thanhtoan(string tp, string phuong, string quan, string phone, string name,string address,Guid id)
+        {
+            var lst = SessionService.GetObjFromSession(HttpContext.Session, "Cart");
+            var user=    SessionService.GetUserFromSession(HttpContext.Session, "User");
+           float total = 0;
+            foreach (var item in lst)
+            {
+                total += item.Quantity * item.Price; 
+            }
+            if (user != null&& user.Id==id)
+            {
+               
+                    var add= getapiAddress.GetApi("Address").FirstOrDefault(c => c.Id_User == user.Id);
+                var idhd = Guid.NewGuid();
+               
+                var order = new Order()
+                {
+                    Id = idhd,
+                    Name = name,
+                    Address = address,
+                    CreateDate = DateTime.Now,
+                    PhoneNumber = phone,
+                    Status = 1,
+                    Transportfee = 0,
+                    Id_User = user.Id,
+                    TotalMoney =total,
+                    Last_modified_date = DateTime.Now,
+                     Note= tp,
+                };
+
+              var c=  getapiOrder.CreateObj(order, "Order");
+
+                foreach (var item in lst)
+                {
+                    var orderdetails = new OrderDetails()
+                    {
+                        Id_order = idhd,
+                        Id_productDetails=item.Id,
+                        Quantity = item.Quantity,
+                           Price = item.Price,
+                    };
+               
+                   var a= getapiOrderDetails.CreateObj(orderdetails, "OrderDetails");
+
+                    var pro = item;
+                    pro.Quantity =pro.Quantity- item.Quantity;
+                  var b=  getapi.UpdateObj(pro,"Product_details");
+
+                }
+
+               
+
+                SessionService.GetObjFromSession(HttpContext.Session, "Cart").Clear();
+
+            }
+            return View();
         }
+
+
     }
 }

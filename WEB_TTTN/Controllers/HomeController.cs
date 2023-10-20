@@ -64,7 +64,7 @@ namespace WEB_TTTN.Controllers
                 List<Claim> claims = new List<Claim>()
                   {
                       new Claim(ClaimTypes.NameIdentifier,email_username),
-                      new Claim(ClaimTypes.Role,_role)
+                      new Claim(ClaimTypes.Role,_role),                                     
                   };
                 ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 AuthenticationProperties properties = new AuthenticationProperties()
@@ -74,9 +74,11 @@ namespace WEB_TTTN.Controllers
                 };
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), properties);
                 return RedirectToAction("Index");
+                
             }
             else
                 return View();
+
         }
 
 
