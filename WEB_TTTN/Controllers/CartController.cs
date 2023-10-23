@@ -1,5 +1,6 @@
 ﻿using DataTTTN.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 using WEB_TTTN.Service;
 
 namespace WEB_TTTN.Controllers
@@ -110,7 +111,13 @@ namespace WEB_TTTN.Controllers
             var lst = SessionService.GetObjFromSession(HttpContext.Session, "Cart");
             ViewBag.User = SessionService.GetUserFromSession(HttpContext.Session, "User");
             ViewBag.pro = getapiProduct.GetApi("Product");
-            ViewBag.Address = getapiAddress.GetApi("Address").FirstOrDefault(c=>c.Id_User==ViewBag.User.Id);
+           
+            if (ViewBag.User.Id==Guid.Empty)
+            {
+                ViewBag.User = getapiUser.GetApi("User").FirstOrDefault(c => c.Id == ViewBag.User.Id);
+                ViewBag.Address = getapiAddress.GetApi("Address").FirstOrDefault(c => c.Id_User == ViewBag.User.Id);
+
+            }
 
             return View(lst);
         } 
@@ -123,6 +130,11 @@ namespace WEB_TTTN.Controllers
             {
                 total += item.Quantity * item.Price; 
             }
+            if (user==null)
+            {
+                user.Id = Guid.Empty;
+
+            }
             if (user != null&& user.Id==id)
             {
                
@@ -133,7 +145,7 @@ namespace WEB_TTTN.Controllers
                 {
                     Id = idhd,
                     Name = name,
-                    Address = address,
+                    Address = address+","+phuong + "," + quan + "," + tp,
                     CreateDate = DateTime.Now,
                     PhoneNumber = phone,
                     Status = 1,
@@ -169,6 +181,7 @@ namespace WEB_TTTN.Controllers
                 SessionService.GetObjFromSession(HttpContext.Session, "Cart").Clear();
 
             }
+          
             return View();
         }
 

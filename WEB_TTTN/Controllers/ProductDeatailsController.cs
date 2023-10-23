@@ -105,13 +105,7 @@ namespace WEB_TTTN.Controllers
 
         public IActionResult ProductView()
         {
-            var lst = getapi.GetApi("Product_details").Where(c => c.Status == 1);
-            ViewBag.Size = getapiSize.GetApi("Size");
-            ViewBag.Color = getapiColor.GetApi("Color");
-            ViewBag.Sole = getapiSole.GetApi("Sole");
-            ViewBag.Category = getapiCategory.GetApi("Category");
-            ViewBag.Material = getapiMaterial.GetApi("Material");
-            ViewBag.Brand = getapiBrand.GetApi("Brand");
+            var lst = getapi.GetApi("Product_details");                                                
             ViewBag.Product = getapiProduct.GetApi("Product");
             ViewBag.Img = getapiImg.GetApi("Image");
             
