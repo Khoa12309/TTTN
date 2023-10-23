@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -69,32 +71,42 @@
                                         <a class="nav-link" asp-controller="About" asp-action="AboutView">About</a>
                                         </li>
                                         <li class="nav-item">
-                                        <a class="nav-link" asp-controller="Product" asp-action="ProductView">Our Glasses</a>
+                                        <a class="nav-link" asp-controller="ProductDetails" asp-action="ProductView">Our Glasses</a>
                                         </li>
                                         <li class="nav-item ">
                                         <a class="nav-link" asp-controller="Shop" asp-action="ShopView">Shop</a>
                                         </li>
                                         <li class="nav-item">
                                         <a class="nav-link" asp-controller="Home" asp-action="Contact">Contact Us</a>
-                                        </li> 
-                                        <li class="nav-item">
-                                        <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="Index">Contact Us</a>
-									    </li> 
-                                        <li class="nav-item">
-                                        <a class="nav-link" asp-area="Admin" asp-controller="Color" asp-action="Create">Size</a>
-									    </li>
-                                        <li class="nav-item">
-                                        <a class="nav-link" asp-area="Admin" asp-controller="Role" asp-action="GetList">Size</a>
-									    </li>
-									
-                                        <li class="nav-item d_none login_btn">
-                                        <a class="nav-link" href="~/Home/Login">Login</a>
                                         </li>
+
+
+                                  
+                                     
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                           <li class="nav-item">
+                                            <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="Index">Admin</a>
+                                        </li>
+                                    }
+                                    @if (!User.Claims.Any())
+                                    {
+                                        <li class="nav-item d_none login_btn">
+                                            <a class="nav-link" href="~/Home/Login">Login</a>
+                                        </li>
+                                    }
+                                    @if (User.Claims.Any())
+                                    {
                                         <li class="nav-item d_none">
                                             <a class="nav-link" href="~/Home/Logout">Register</a>
                                         </li>
+                                    }
+									
+                                       
+                                        
+                                        
                                         <li class="nav-item d_none sea_icon">
-                                            <a class="nav-link" href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i><i class="fa fa-search" aria-hidden="true"></i></a>
+                                            <a class="nav-link" href="~/Home/Index"><i class="fa fa-shopping-bag" aria-hidden="true"></i><i class="fa fa-search" aria-hidden="true"></i></a>
                                         </li>
                                     </ul>
                                 </div>

@@ -25,26 +25,40 @@
                 foreach (var item in Model)
                 {
 
-
                     foreach (var pro in ViewBag.Product)
                     {
-
-                        foreach (var img in ViewBag.Img)
+                        List<Guid> a = new List<Guid>();
+                        List<Guid> b = new List<Guid>();
+                        if (a.Exists(i => i == pro.Id))
                         {
-
-
-
+                            continue;
+                        }
+                        if (pro.Id==item.Id_Product)
+                        {
+                            a.Add(pro.Id);
                             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                                <div class="glasses_box">
-                                    <figure><img src="~/images/@img.Name" alt="#" /></figure>
-                                    
+                            <div class="glasses_box">
+                            @foreach (var img in ViewBag.Img)
+                            {
+                                        if (b.Exists(i => i == item.Id))
+                                        {
+                                            continue;
+                                        }
+                                        if (item.Id_Product == img.Id_Product_details)
+                                        {
+                                            b.Add(item.Id);
+                                            <figure><img src="~/images/@img.Name" alt="#" /></figure>
+                                        }
+                                          
+                                               
+                            }
                                     <h3><span class="blu">$</span>@item.Price</h3>
                                     <p>@pro.Name</p>
-                                    <a class="read_more" href="#">Add to cart</a>
+                                    <a class="read_more" href="@Url.Action("AddToCart","Cart",new {id=item.Id,soluong=1})">Add to cart</a>
                                 </div>
 
                             </div>
-                        }
+                        }         
                     }
                 }
             }

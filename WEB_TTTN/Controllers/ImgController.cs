@@ -53,8 +53,8 @@ namespace WEB_TTTN.Controllers
                         imageFile.CopyTo(stream);
                     }
                     // Gán lại giá trị cho Description của đối tượng bằng tên file ảnh đã được sao chép
-                    var pd= getapipd.GetApi("Product_details").FirstOrDefault(c=>c.Id_Product==obj.Id_Product_details);
-                    obj.Id_Product_details = pd.Id;
+                    //var pd= getapipd.GetApi("Product_details").FirstOrDefault(c=>c.Id_Product==obj.Id_Product_details);
+                    //obj.Id_Product_details = pd.Id;
                     obj.Name = imageFile.FileName;
 
 

@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSession(ss=>ss.IdleTimeout=new TimeSpan(0,5,0));
+builder.Services.AddSession(ss=>ss.IdleTimeout=new TimeSpan(0,1,0));
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddAuthentication(
     CookieAuthenticationDefaults.AuthenticationScheme
