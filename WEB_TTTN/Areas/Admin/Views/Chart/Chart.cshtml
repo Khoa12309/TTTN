@@ -1,0 +1,71 @@
+﻿@model IEnumerable<DataTTTN.Models.Product_details>
+@{
+    ViewData["Title"] = "Chart";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js" integrity="sha512-7U4rRB8aGAHGVad3u2jiC7GA5/1YhQcQjxKeaVms/bT66i3LVBMRcBI9KwABNWnxOSwulkuSXxZLGuyfvo7V1A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<h1>Chart</h1>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+<script>
+ 
+    var xValues = [];
+    var yValues = [];
+    @{
+        string ten="";
+        foreach (var item in Model)
+        {
+            int tt = 0;
+            foreach (var HDCT in ViewBag.HDCT)
+            {
+                if (item.Id == HDCT.Id_productDetails)
+                {
+                    tt += HDCT.Quantity;
+                }
+            }
+           
+            foreach (var pro in ViewBag.Product)
+            {
+                if (item.Id_Product == pro.Id)
+                {
+                    ten= pro.Name;
+                }
+            }
+            @:xValues.push("@ten")
+            @:yValues.push(@tt)
+           
+         
+        }
+        
+    }
+  
+    var barColors = [
+        "#b91d47",
+        "#00aba9",
+        "#2b5797",
+        "#e8c3b9",
+        "#1e7145"
+    ];
+
+    new Chart("myChart", {
+        type: "pie",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "World Wide Wine Production 2018"
+            }
+        }
+    });
+</script>
+

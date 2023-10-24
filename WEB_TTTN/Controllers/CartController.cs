@@ -156,7 +156,7 @@ namespace WEB_TTTN.Controllers
                      Note= tp,
                 };
 
-              var c=  getapiOrder.CreateObj(order, "Order");
+                getapiOrder.CreateObj(order, "Order");
 
                 foreach (var item in lst)
                 {
@@ -170,18 +170,18 @@ namespace WEB_TTTN.Controllers
                
                    var a= getapiOrderDetails.CreateObj(orderdetails, "OrderDetails");
 
-                    var pro = item;
+                    var pro = getapi.GetApi("Product_details").FirstOrDefault(c => c.Id == item.Id);
                     pro.Quantity =pro.Quantity- item.Quantity;
-                  var b=  getapi.UpdateObj(pro,"Product_details");
-
+                    getapi.UpdateObj(pro, "Product_details");
+                   
                 }
 
                
-
                 SessionService.GetObjFromSession(HttpContext.Session, "Cart").Clear();
+                lst.Clear();
+                SessionService.SetObjToJson(HttpContext.Session, "Cart", lst);
 
             }
-          
             return View();
         }
 
