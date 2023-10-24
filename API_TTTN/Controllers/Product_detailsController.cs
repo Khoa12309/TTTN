@@ -52,6 +52,7 @@ namespace API_TTTN.Controllers
             item.Id_Color = obj.Id_Color;
             item.Id_Sole=obj.Id_Sole;
             item.Id_Category = obj.Id_Category;
+            item.Quantity = obj.Quantity;
             
 
             return _crud.UpdateItem(item);

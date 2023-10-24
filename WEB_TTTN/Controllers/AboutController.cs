@@ -7,7 +7,7 @@ namespace WEB_TTTN.Controllers
     
     public class AboutController : Controller
     {
-        [Authorize(Roles = "nv")]
+      
         public IActionResult AboutView()
         {
             return View();
