@@ -21,6 +21,8 @@ namespace WEB_TTTN.Controllers
         private Getapi<Address> getapiAddress;
         private Getapi<Order> getapiOrder;
         private Getapi<OrderDetails> getapiOrderDetails;
+        private Getapi<Voucher> getapiVoucher;
+
         public CartController()
         {
             getapi = new Getapi<Product_details>();
@@ -36,6 +38,7 @@ namespace WEB_TTTN.Controllers
             getapiAddress=new Getapi<Address>();
             getapiOrder=new Getapi<Order>();
             getapiOrderDetails=new Getapi<OrderDetails>();
+            getapiVoucher=new Getapi<Voucher>();
         }
 
         public IActionResult Index()
@@ -111,13 +114,15 @@ namespace WEB_TTTN.Controllers
             var lst = SessionService.GetObjFromSession(HttpContext.Session, "Cart");
             ViewBag.User = SessionService.GetUserFromSession(HttpContext.Session, "User");
             ViewBag.pro = getapiProduct.GetApi("Product");
-           
+            ViewBag.Voucher = getapiVoucher.GetApi("Voucher");
+          
             if (ViewBag.User.Id==Guid.Empty)
             {
                 ViewBag.User = getapiUser.GetApi("User").FirstOrDefault(c => c.Id == ViewBag.User.Id);
-                ViewBag.Address = getapiAddress.GetApi("Address").FirstOrDefault(c => c.Id_User == ViewBag.User.Id);
-
+               
+               
             }
+            ViewBag.Address = getapiAddress.GetApi("Address").FirstOrDefault(c => c.Id_User == ViewBag.User.Id);
 
             return View(lst);
         } 
@@ -125,6 +130,7 @@ namespace WEB_TTTN.Controllers
         {
             var lst = SessionService.GetObjFromSession(HttpContext.Session, "Cart");
             var user=    SessionService.GetUserFromSession(HttpContext.Session, "User");
+          
            float total = 0;
             foreach (var item in lst)
             {
