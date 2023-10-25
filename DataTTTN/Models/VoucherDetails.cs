@@ -19,8 +19,6 @@ namespace DataTTTN.Models
         public float BeforPrice { get; set; }
         public float AfterPrice { get; set; }
         public float DiscountPrice { get; set; }
-
-
         public virtual Voucher? Voucher { get; set; }
         public virtual Order? Order { get; set; }
     }

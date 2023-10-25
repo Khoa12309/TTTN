@@ -1,4 +1,6 @@
-﻿@model IEnumerable<DataTTTN.Models.Product_details>
+﻿@using Microsoft.AspNetCore.Authorization
+
+@model IEnumerable<DataTTTN.Models.Product_details>
 
 @{
 	ViewData["Title"] = "checkout";
@@ -59,18 +61,26 @@
 					<li class="list-group-item d-flex justify-content-between">
 						<input hidden name="tien" value="@total.ToString()" />
 					</li>
-				
+
 				}
 			</ul>
+			@if (User.Claims.Any())
+			{
+				<form class="card p-2">
+					<div class="input-group">
+						<select id="giam" name="giam" class="form-control" placeholder="Voucher"> 
+							@foreach (var vo in ViewBag.Voucher)
+							{
+								<option value="@vo.Id">@vo.Name </option>
+							}
 
-			<form class="card p-2">
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Promo code">
+					</select>
 					<div class="input-group-append">
 						<button type="submit" class="btn btn-secondary">Redeem</button>
 					</div>
 				</div>
-			</form>
+				</form>
+			}
 		</div>
 		<div class="col-md-8 order-md-1">
 			<h4 class="mb-3">Billing address</h4>
@@ -160,3 +170,7 @@
 <!-- sidebar -->
 <script src="~/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="~/js/custom.js"></script>
+<script>
+
+
+</script>
