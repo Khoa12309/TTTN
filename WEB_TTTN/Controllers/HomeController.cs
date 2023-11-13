@@ -18,8 +18,17 @@ namespace WEB_TTTN.Controllers
         private Getapi<Account> getapiAcc;
         private Getapi<Role> getapiRole;
         private Getapi<Phanvung> getapiPV;
-  
-        
+        private Getapi<Product_details> getapi;
+        private Getapi<Size> getapiSize;
+        private Getapi<Color> getapiColor;
+        private Getapi<Category> getapiCategory;
+        private Getapi<Material> getapiMaterial;
+        private Getapi<Sole> getapiSole;
+        private Getapi<Brand> getapiBrand;
+        private Getapi<Product> getapiProduct;
+        private Getapi<Image> getapiImg;
+
+
 
 
 
@@ -30,11 +39,29 @@ namespace WEB_TTTN.Controllers
             getapiAcc = new Getapi<Account>();
             getapiRole = new Getapi<Role>();
             getapiPV = new Getapi<Phanvung>();
+            getapi = new Getapi<Product_details>();
+            getapiSize = new Getapi<Size>();
+            getapiColor = new Getapi<Color>();
+            getapiCategory = new Getapi<Category>();
+            getapiMaterial = new Getapi<Material>();
+            getapiSole = new Getapi<Sole>();
+            getapiBrand = new Getapi<Brand>();
+            getapiProduct = new Getapi<Product>();
+            getapiImg = new Getapi<Image>();
         }
 
         public IActionResult Index()
         {
-            return View();
+            ViewBag.Size = getapiSize.GetApi("Size");
+            ViewBag.Color = getapiColor.GetApi("Color");
+            ViewBag.Sole = getapiSole.GetApi("Sole");
+            ViewBag.Category = getapiCategory.GetApi("Category");
+            ViewBag.Material = getapiMaterial.GetApi("Material");
+            ViewBag.Brand = getapiBrand.GetApi("Brand");
+            ViewBag.Product = getapiProduct.GetApi("Product");
+            ViewBag.Img = getapiImg.GetApi("Image");
+            var lst = getapi.GetApi("Product_details");
+            return View(lst);
         }
 
         public IActionResult Login()
