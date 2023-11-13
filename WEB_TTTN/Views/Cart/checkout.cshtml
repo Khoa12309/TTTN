@@ -23,7 +23,7 @@
 				@{
 					float total=0;
 
-				@foreach (var item in Model)
+									@foreach (var item in Model)
 					{
 						float tt = @item.Price * @item.Quantity;
 						total += tt;
@@ -32,13 +32,13 @@
 						if (item.Id_Product==pro.Id)
 						{
 							
-								<li class="list-group-item d-flex justify-content-between lh-condensed">
-									<div>
-										<h6 class="my-0">@pro.Name</h6>
-										<small class="text-muted">@item.Description</small>
-									</div>
-									<span class="text-muted">@tt.ToString()</span>
-								</li>
+													<li class="list-group-item d-flex justify-content-between lh-condensed">
+														<div>
+															<h6 class="my-0">@pro.Name</h6>
+															<small class="text-muted">@item.Description</small>
+														</div>
+														<span class="text-muted">@tt.ToString()</span>
+													</li>
 
 						}
 
@@ -46,21 +46,21 @@
 				}
 				
 
-					<li class="list-group-item d-flex justify-content-between bg-light">
-						<div class="text-success">
-							<h6 class="my-0">Promo code</h6>
-							<small>EXAMPLECODE</small>
-						</div>
-						<span class="text-success">-$5</span>
-					</li>
-					<li class="list-group-item d-flex justify-content-between">
-						<span>Total (USD)</span>
-						<strong > @total.ToString()</strong>
-						
-					</li>
-					<li class="list-group-item d-flex justify-content-between">
-						<input hidden name="tien" value="@total.ToString()" />
-					</li>
+										<li class="list-group-item d-flex justify-content-between bg-light">
+											<div class="text-success">
+												<h6 class="my-0">Promo code</h6>
+												<small>EXAMPLECODE</small>
+											</div>
+											<span class="text-success">-$5</span>
+										</li>
+										<li class="list-group-item d-flex justify-content-between">
+											<span>Total (USD)</span>
+											<strong >  @total.ToString()</strong>
+											
+										</li>
+										<li class="list-group-item d-flex justify-content-between">
+											<input hidden id="tien" name="tien" value="@total.ToString()" />
+										</li>
 
 				}
 			</ul>
@@ -68,15 +68,15 @@
 			{
 				<form class="card p-2">
 					<div class="input-group">
-						<select id="giam" name="giam" class="form-control" placeholder="Voucher"> 
+						<select id="giam" name="giam" class="form-control" placeholder="Voucher" oninput="tinh()">
 							@foreach (var vo in ViewBag.Voucher)
 							{
-								<option value="@vo.Id">@vo.Name </option>
+								<option value="@vo.Value">@vo.Name </option>
 							}
 
 					</select>
 					<div class="input-group-append">
-						<button type="submit" class="btn btn-secondary">Redeem</button>
+						<button type="reset" onclick="tinh()" class="btn btn-secondary">Redeem</button>
 					</div>
 				</div>
 				</form>
@@ -172,5 +172,9 @@
 <script src="~/js/custom.js"></script>
 <script>
 
+	function tinh(){
+		var phantram = document.getElementById("tien").value/document.getElementById("giam").value*100;
+	@total=document.getElementById("tien").value - 10;
+	}
 
 </script>
